@@ -1,0 +1,1 @@
+rrdtool graph /home/pi/temp/cpu/cputemp.png DEF:temp=/home/pi/temp/cpu/cputemp.rrd:cputemp:AVERAGE LINE2:temp#00AF70 --width 1200 --height 600 --alt-autoscale --watermark Flavio_Vasconcelos 

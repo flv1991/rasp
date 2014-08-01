@@ -1,0 +1,1 @@
+rrdtool graph /home/pi/temp/exterior/cputemp.png DEF:temp=/home/pi/temp/exterior/cputemp.rrd:cputemp:AVERAGE LINE2:temp#0FFF00 --width 1200 --height 600
