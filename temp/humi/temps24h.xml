@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xport>
+  <meta>
+    <start>1406992200</start>
+    <step>300</step>
+    <end>1406992200</end>
+    <rows>37</rows>
+    <columns>1</columns>
+    <legend>
+      <entry>humidity</entry>
+    </legend>
+  </meta>
+  <data>
+    <row><t>1406992200</t><v>4.8787691390e+01</v></row>
+    <row><t>1406992500</t><v>4.8611655217e+01</v></row>
+    <row><t>1406992800</t><v>NaN</v></row>
+    <row><t>1406993100</t><v>NaN</v></row>
+    <row><t>1406993400</t><v>NaN</v></row>
+    <row><t>1406993700</t><v>NaN</v></row>
+    <row><t>1406994000</t><v>NaN</v></row>
+    <row><t>1406994300</t><v>NaN</v></row>
+    <row><t>1406994600</t><v>NaN</v></row>
+    <row><t>1406994900</t><v>NaN</v></row>
+    <row><t>1406995200</t><v>NaN</v></row>
+    <row><t>1406995500</t><v>1.0932686916e+01</v></row>
+    <row><t>1406995800</t><v>1.1000000000e+01</v></row>
+    <row><t>1406996100</t><v>1.0899831191e+01</v></row>
+    <row><t>1406996400</t><v>NaN</v></row>
+    <row><t>1406996700</t><v>NaN</v></row>
+    <row><t>1406997000</t><v>NaN</v></row>
+    <row><t>1406997300</t><v>NaN</v></row>
+    <row><t>1406997600</t><v>NaN</v></row>
+    <row><t>1406997900</t><v>NaN</v></row>
+    <row><t>1406998200</t><v>NaN</v></row>
+    <row><t>1406998500</t><v>2.7000000000e+01</v></row>
+    <row><t>1406998800</t><v>2.7000000000e+01</v></row>
+    <row><t>1406999100</t><v>2.7000000000e+01</v></row>
+    <row><t>1406999400</t><v>2.7000000000e+01</v></row>
+    <row><t>1406999700</t><v>2.6997496778e+01</v></row>
+    <row><t>1407000000</t><v>NaN</v></row>
+    <row><t>1407000300</t><v>NaN</v></row>
+    <row><t>1407000600</t><v>NaN</v></row>
+    <row><t>1407000900</t><v>NaN</v></row>
+    <row><t>1407001200</t><v>NaN</v></row>
+    <row><t>1407001500</t><v>NaN</v></row>
+    <row><t>1407001800</t><v>NaN</v></row>
+    <row><t>1407002100</t><v>NaN</v></row>
+    <row><t>1407002400</t><v>NaN</v></row>
+    <row><t>1407002700</t><v>0.0000000000e+00</v></row>
+    <row><t>1407003000</t><v>NaN</v></row>
+  </data>
+</xport>

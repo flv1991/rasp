@@ -1,0 +1,105 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+# inicializaçoes para GPIO
+#@reboot cd /home/pi/Adafruit-Raspberry-Pi-Python-Code/Adafruit_CharLCD && sudo ./CharLCD_Temp.py
+#montar disco para nas
+#@reboot sudo mount /dev/sda1 /var/www/owncloud/data
+#@reboot sudo modprobe w1-gpio
+#@reboot sudo modprobe w1-therm
+01 * * * * sh /home/pi/giop.sh
+
+#----------------------actualizar database cputemp e fazer export do cputemp e enviar para o ave---------------------------
+* * * * * cd /home/pi/temp/cpu && ./up.py
+*/5 * * * * rrdtool xport -s now-3h -e now --step 300 DEF:temp=/home/pi/temp/cpu/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de CPU" > /home/pi/temp/cpu/temps3h.xml
+*/5 * * * * rrdtool xport -s now-24h -e now --step 900 DEF:temp=/home/pi/temp/cpu/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de CPU" > /home/pi/temp/cpu/temps24h.xml
+*/30 * * * * rrdtool xport -s now-48h -e now --step 1800 DEF:temp=/home/pi/temp/cpu/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de CPU" > /home/pi/temp/cpu/temps48h.xml
+* */23 * * * rrdtool xport -s now-8d -e now --step 7200  DEF:temp=/home/pi/temp/cpu/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de CPU" > /home/pi/temp/cpu/temps1w.xml
+* */23 * * * rrdtool xport -s now-1month -e now --step 10800  DEF:temp=/home/pi/temp/cpu/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de CPU" > /home/pi/temp/cpu/temps1m.xml
+* */23 * * * rrdtool xport -s now-3month -e now --step 43200  DEF:temp=/home/pi/temp/cpu/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de CPU" > /home/pi/temp/cpu/temps3m.xml
+* */23 * * * rrdtool xport -s now-1y -e now --step 86400  DEF:temp=/home/pi/temp/cpu/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de CPU" > /home/pi/temp/cpu/temps1y.xml
+
+
+*/5 * * * * scp /home/pi/temp/cpu/temps3h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/temps3h.xml
+*/5 * * * * scp /home/pi/temp/cpu/temps24h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/temps24h.xml
+*/30 * * * * scp /home/pi/temp/cpu/temps48h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/temps48h.xml
+* */23 * * * scp /home/pi/temp/cpu/temps1w.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/temps1w.xml
+* */23 * * * scp /home/pi/temp/cpu/temps1m.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/temps1m.xml
+* */23 * * * scp /home/pi/temp/cpu/temps3m.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/temps3m.xml
+* */23 * * * scp /home/pi/temp/cpu/temps1y.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/temps1y.xml
+
+
+#interior
+
+#* * * * *  sudo modprobe w1-gpio && sudo modprobe w1-therm && cd /home/pi/temp/interior && ./up.py
+#* * * * * rrdtool xport -s now-3h -e now --step 60 DEF:temp=/home/pi/temp/interior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura Interior" > /home/pi/temp/interior/temps3h.xml
+
+
+# temp ambiente fazer updatge e export e mandar para o ave
+
+* * * * * cd /home/pi/temp/exterior && ./up.py
+# eport
+*/5 * * * * rrdtool xport -s now-3h -e now --step 300 DEF:temp=/home/pi/temp/exterior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de Ambiente" > /home/pi/temp/exterior/temps3h.xml
+*/5 * * * * rrdtool xport -s now-24h -e now --step 600 DEF:temp=/home/pi/temp/exterior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de Ambiente" > /home/pi/temp/exterior/temps24h.xml
+*/30 * * * * rrdtool xport -s now-48h -e now --step 1800 DEF:temp=/home/pi/temp/exterior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de Ambiente" > /home/pi/temp/exterior/temps48h.xml
+* */23 * * * rrdtool xport -s now-8d -e now --step 7200 DEF:temp=/home/pi/temp/exterior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de Ambiente" > /home/pi/temp/exterior/temps1w.xml
+* */23 * * * rrdtool xport -s now-1month -e now --step 10800 DEF:temp=/home/pi/temp/exterior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de Ambiente" > /home/pi/temp/exterior/temps1m.xml
+* */23 * * * rrdtool xport -s now-3month -e now --step 43200 DEF:temp=/home/pi/temp/exterior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de Ambiente" > /home/pi/temp/exterior/temps3m.xml
+* */23 * * * rrdtool xport -s now-1y -e now --step 86400 DEF:temp=/home/pi/temp/exterior/temperatures.rrd:temp:AVERAGE XPORT:temp:"Temperatura de Ambiente" > /home/pi/temp/exterior/temps1y.xml
+
+*/5 * * * * scp /home/pi/temp/exterior/temps3h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/humid3h.xml
+*/5 * * * * scp /home/pi/temp/exterior/temps24h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/humid24h.xml
+*/30 * * * * scp /home/pi/temp/exterior/temps48h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/humid48h.xml
+* */23 * * * scp /home/pi/temp/exterior/temps1w.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/humid1w.xml
+* */23 * * * scp /home/pi/temp/exterior/temps1m.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/humid1m.xml
+* */23 * * * scp /home/pi/temp/exterior/temps3m.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/humid3m.xml
+* */23 * * * scp /home/pi/temp/exterior/temps1y.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/humid1y.xml
+
+
+#grafico cpu temp
+
+#*/5 * * * * cd /home/pi/temp/cpu && ./graph.sh
+
+#*/5 * * * * ./dropbox_uploader.sh upload /home/pi/temp/cpu/cputemp.png Public/cputemp.png
+
+#actualizar database exterior
+* * * * * cd /home/pi/temp/exterior && ./up.py
+#grafico temp exterior
+#*/5 * * * * cd /home/pi/temp/exterior && ./graph.sh
+#upload para a drop
+#*/5 * * * * ./dropbox_uploader.sh upload /home/pi/temp/exterior/cputemp.png Public/temp.png
+
+
+
+
+# pra humidade
+
+* * * * * sudo sh /home/pi/temp/humi/11.sh
+
+# cd /home/pi/temp/cpu && ./up.py
+*/5 * * * * rrdtool xport -s now-3h -e now --step 300 DEF:humi=/home/pi/temp/humi/humi.rrd:humi:AVERAGE XPORT:humi:"Humidade" > /home/pi/temp/humi/humi3h.xml
+*/5 * * * * scp /home/pi/temp/humi/humi3h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/dht3h.xml
+
+*/5 * * * * rrdtool xport -s now-24h -e now --step 600 DEF:humi=/home/pi/temp/humi/humi.rrd:humi:AVERAGE XPORT:humi:"Humidade" > /home/pi/temp/humi/humi24h.xml
+*/5 * * * * scp /home/pi/temp/humi/humi24h.xml 1100419@ave.dee.isep.ipp.pt:WWW/rpi/data/dht24h.xml
+

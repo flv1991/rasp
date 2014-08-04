@@ -1,0 +1,1 @@
+rrdtool create humi.rrd --start N --step 300 DS:humi:GAUGE:600:0:50 RRA:AVERAGE:0.5:1:288 RRA:AVERAGE:0.5:3:672

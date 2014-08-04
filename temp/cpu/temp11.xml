@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xport>
+  <meta>
+    <start>1387035360</start>
+    <step>1080</step>
+    <end>1387035360</end>
+    <rows>11</rows>
+    <columns>1</columns>
+    <legend>
+      <entry>temperatura</entry>
+    </legend>
+  </meta>
+  <data>
+    <row><t>1387035360</t><v>NaN</v></row>
+    <row><t>1387036440</t><v>NaN</v></row>
+    <row><t>1387037520</t><v>NaN</v></row>
+    <row><t>1387038600</t><v>NaN</v></row>
+    <row><t>1387039680</t><v>NaN</v></row>
+    <row><t>1387040760</t><v>NaN</v></row>
+    <row><t>1387041840</t><v>NaN</v></row>
+    <row><t>1387042920</t><v>NaN</v></row>
+    <row><t>1387044000</t><v>NaN</v></row>
+    <row><t>1387045080</t><v>NaN</v></row>
+    <row><t>1387046160</t><v>NaN</v></row>
+  </data>
+</xport>

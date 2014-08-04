@@ -1,0 +1,1 @@
+rrdtool xport -s now-3h -e now --step 900 DEF:temp=cputemp.rrd:cputemp:AVERAGE XPORT:temp:"temperatura" > temp11.xml
